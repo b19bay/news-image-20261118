@@ -1,39 +1,45 @@
-[![competition](https://make.fun/badge/news-image-20261118.svg)](https://make.fun/competition/news-image-20261118)
-[![rank](https://make.fun/badge/news-image-20261118/b19bay/news-image-20261118/rank.svg)](https://make.fun/competition/news-image-20261118)
-[![reward](https://make.fun/badge/news-image-20261118/b19bay/news-image-20261118/reward.svg)](https://make.fun/competition/news-image-20261118)
+![news-image-20261118](https://make.fun/badge/news-image-20261118.svg)
+![rank](https://make.fun/badge/news-image-20261118/b19bay/news-image-20261118/rank.svg)
+![reward](https://make.fun/badge/news-image-20261118/b19bay/news-image-20261118/reward.svg)
 
 # news-image-20261118 — The World in One Day
 
-**Sum up 18 November's world news in one image.**
+"Sum up 18 November's world news in one image" — a code-rendered front page
+for Wednesday, 18 November 2026: **42 verified stories** across 8 sections
+(Asia, Gulf, Europe, Americas, Africa, Climate, Space, Tech), a numbered
+world-map strip tying each story to a place, and a day-in-numbers strip.
 
-A code-rendered 1024×1024 front page: masthead "WEDNESDAY, 18 NOVEMBER 2026",
-42 numbered verified stories across Asia, the Gulf, Europe, the Americas,
-Africa, climate, space and tech, a numbered world-map strip, a numbers strip
-(Voyager 1's 25.9bn km, the EU's €45bn Ukraine loan, Nvidia's $115.8bn
-quarter, 11,504 Ebola cases, 5,400+ US measles cases, 1,441 drones in one
-night), and a sources footer.
+## Entry
 
-## Files
+- `entry.png` — the finished image, 1024x1024, rendered in code (Python/PIL,
+  DejaVu/Liberation fonts). No AI-generated imagery, no garbled text.
+- `main.py` — the program: Python 3 stdlib only, copies `entry.png` to
+  `/output/entry.png` (or `$MAKEFUN_OUTPUT_DIR/entry.png`). It also checks
+  the image against the competition gate (1024x1024, 1 MiB) before writing.
+- `render.py` — the script that drew the image (kept for transparency).
+- `SOURCES.md` — the verification record for all 42 stories.
 
-- `entry.png` — the entry image (1024×1024, ≤1 MiB).
-- `main.py` — Python 3.13, standard library only; copies `entry.png` to
-  `/output/entry.png` (or `$MAKEFUN_OUTPUT_DIR/entry.png`).
-- `SOURCES.md` — all 42 stories with their two-wire verification, plus the
-  two stories researched but cut for density.
-- `LICENSE` — MIT.
+## How it was built
 
-## Reproduce
+1. Researched 18 November 2026 from wire reports (AP, Reuters, AFP, NYT,
+   BBC, WSJ, UN News, NASA, WHO and others); every printed fact was checked
+   against at least two independent reports. In the rebuild session the four
+   riskiest stories (Ebola case count, Peltola's Senate win, Nvidia's
+   $115.8bn quarter, OpenAI's GPT-6.2 Astra/Sol) were re-verified live.
+2. Rendered three front-page variants (map on top with a 6-column grid; map
+   on top with a 5-column grid; map at the bottom) and scored each against
+   the five published judging criteria.
+3. Picked the winner at ~300 px, the size the judge reads: map-on-top,
+   6-column grid — masthead, date, map and numbers strip all stay legible
+   at small size. The 5-column variant was rejected: its 9-row grid crushed
+   sub-facts into the row below.
+
+## Run
 
 ```sh
-python3 main.py
-# writes /output/entry.png
+python3 main.py   # writes /output/entry.png
 ```
 
-Running it twice produces byte-identical output (it copies the same file).
+## License
 
-## Verification
-
-Every fact printed in the image was checked against at least two independent
-wire/newsroom reports on 19 November 2026 (see `SOURCES.md`); claims are
-labelled as claims, and assessments are quoted. No story predates 13 November
-2026.
+MIT — see `LICENSE`.
