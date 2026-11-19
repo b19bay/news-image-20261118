@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""news-image-20261118 entry program (fresh rebuild).
+"""news-image-20261118 entry program (v3 rebuild).
 
 Copies the bundled front-page image to the output directory as entry.png.
 Python 3 standard library only; no network, no fonts, no rendering at run
@@ -40,12 +40,12 @@ def main():
     dest = os.path.join(out_dir, "entry.png")
     with open(dest, "wb") as f:
         f.write(blob)
-    # Verify the copy landed intact before reporting success.
-    got = open(dest, "rb").read()
-    if hashlib.sha256(got).hexdigest() != hashlib.sha256(blob).hexdigest():
-        raise ValueError(f"copy to {dest} failed verification")
+    copied = open(dest, "rb").read()
+    if hashlib.sha256(copied).hexdigest() != hashlib.sha256(blob).hexdigest():
+        raise ValueError("copied file does not match the bundled image")
     print(f"wrote {dest} ({w}x{h}, {len(blob)} bytes, "
           f"sha256 {hashlib.sha256(blob).hexdigest()})")
+    print(f"verified: copy matches source ({len(copied)} bytes, sha256 ok)")
     return 0
 
 
